@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>내 첫번째 아이디어</title>
+  <meta name="description" content="내 첫번째 아이디어를 소개하는 페이지입니다." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --color-bg: #040a1a;
+      --color-accent1: #1d4ed8;
+      --color-accent2: #38bdf8;
+      --color-accent3: #6366f1;
+      --color-text: #f1f5f9;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Animated gradient orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.35;
+      animation: float 8s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+    .orb-1 {
+      width: 480px; height: 480px;
+      background: radial-gradient(circle, var(--color-accent1), transparent 70%);
+      top: -120px; left: -100px;
+      animation-delay: 0s;
+    }
+    .orb-2 {
+      width: 380px; height: 380px;
+      background: radial-gradient(circle, var(--color-accent2), transparent 70%);
+      bottom: -100px; right: -80px;
+      animation-delay: -3s;
+    }
+    .orb-3 {
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, var(--color-accent3), transparent 70%);
+      top: 50%; left: 60%;
+      animation-delay: -5s;
+    }
+
+    @keyframes float {
+      0%   { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(30px, 40px) scale(1.08); }
+    }
+
+    /* Particle dots */
+    .particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .dot {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.55);
+      animation: twinkle var(--dur) ease-in-out infinite alternate;
+    }
+    @keyframes twinkle {
+      0%   { opacity: 0.1; transform: scale(0.8); }
+      100% { opacity: 0.7; transform: scale(1.2); }
+    }
+
+    /* Main card */
+    .card {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 3.5rem 4rem;
+      border-radius: 2rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      box-shadow:
+        0 0 0 1px rgba(124, 58, 237, 0.2),
+        0 32px 80px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      animation: fadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px) scale(0.96); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-accent2);
+      background: rgba(6, 182, 212, 0.12);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      border-radius: 999px;
+      padding: 0.35rem 1rem;
+      margin-bottom: 1.8rem;
+      animation: fadeUp 1s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--color-accent2);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.6); }
+    }
+
+    /* Heading */
+    h1 {
+      font-size: clamp(3.2rem, 9vw, 6rem);
+      font-weight: 900;
+      line-height: 1.1;
+      background: linear-gradient(
+        135deg,
+        #bfdbfe 0%,
+        #60a5fa 30%,
+        #3b82f6 60%,
+        #818cf8 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeUp 1s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+      letter-spacing: -0.03em;
+      text-shadow: none;
+    }
+
+    /* Divider */
+    .divider {
+      width: 64px; height: 3px;
+      margin: 1.6rem auto;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--color-accent1), var(--color-accent2));
+      animation: fadeUp 1s 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    /* Subtitle */
+    .subtitle {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(241, 245, 249, 0.5);
+      letter-spacing: 0.04em;
+      animation: fadeUp 1s 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    /* Glow ring on card hover */
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 2rem;
+      background: linear-gradient(135deg, var(--color-accent1), var(--color-accent2), var(--color-accent3));
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .card:hover::before {
+      opacity: 0.45;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <!-- Particle dots (generated via JS) -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Main content -->
+  <main class="card" id="main-card">
+    <div class="badge">
+      <span class="badge-dot"></span>
+      아이디어 노트
+    </div>
+    <h1>내 첫번째 아이디어</h1>
+    <div class="divider"></div>
+    <p class="subtitle">모든 위대한 것은 작은 생각 하나에서 시작됩니다.</p>
+  </main>
+
+  <script>
+    const container = document.getElementById('particles');
+    const count = 55;
+    for (let i = 0; i < count; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      const size = Math.random() * 3 + 1;
+      dot.style.cssText = `
+        width: ${size}px;
+        height: ${size}px;
+        top: ${Math.random() * 100}%;
+        left: ${Math.random() * 100}%;
+        --dur: ${(Math.random() * 3 + 2).toFixed(1)}s;
+        animation-delay: ${(Math.random() * 4).toFixed(1)}s;
+      `;
+      container.appendChild(dot);
+    }
+  </script>
+
+</body>
+</html>
